@@ -23,6 +23,7 @@ import requests
 from .errors import EmarsysError, error_dictionary
 
 import json
+import pytz
 
 
 class Emarsys(object):
@@ -34,7 +35,6 @@ class Emarsys(object):
                  username,
                  secret_token,
                  base_uri="https://www1.emarsys.net/api/v2/",
-                 tzinfo_obj=None,
                  timeout=None):
         """
         Initialises the Emarsys API wrapper object.
@@ -42,7 +42,6 @@ class Emarsys(object):
         self._username = username
         self._secret_token = secret_token
         self._base_uri = base_uri
-        self._tzinfo_obj = tzinfo_obj
         self.timeout = timeout
 
     def __str__(self):
@@ -111,7 +110,7 @@ class Emarsys(object):
         return result["data"]
 
     def _authentication_header_value(self):
-        now = datetime.datetime.now(self._tzinfo_obj)
+        now = datetime.datetime.now(tz=pytz.utc)
         created = now.replace(microsecond=0).isoformat()
         nonce = hashlib.md5(str(random.getrandbits(128)).encode()).hexdigest()
         password_digest = "".join((nonce, created, self._secret_token)).encode()

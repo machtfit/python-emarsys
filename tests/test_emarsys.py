@@ -12,9 +12,9 @@ def test_create_authentication_header(monkeypatch):
     value = Emarsys('client_id', 'secret')._authentication_header_value()
     assert value == ('UsernameToken'
                      ' Username="client_id",'
-                     ' PasswordDigest="YzI3MWVhMDgwNjMzZDdhMjE1MjhkMzM3NTk1NTQwYjRjNmM4ZGYzMA==",'
+                     ' PasswordDigest="NzVhOTg3Yjg2NTcyZmE1OWMwYzIxNWQ5ZDgyMzgxZWExOGI3NGFjZQ==",'
                      ' Nonce="a87ff679a2f3e71d9181a67b7542122c",'
-                     ' Created="2016-07-20T12:34:56"')
+                     ' Created="2016-07-20T12:34:56+00:00"')
 
 
 def test_call_successful():

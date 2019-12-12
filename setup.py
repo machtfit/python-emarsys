@@ -27,4 +27,4 @@ setup(name="python-emarsys",
       classifiers=CLASSIFIERS,
       keywords=KEYWORDS,
       zip_safe=True,
-      install_requires=["requests"])
+      install_requires=["requests", "pytz"])
